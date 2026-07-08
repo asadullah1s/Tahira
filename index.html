@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>TAHERA · Luxury Boutique</title>
+    <!-- ============================================================
+    PREMIUM TYPOGRAPHY · GOOGLE FONTS
+    ============================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300&family=DM+Serif+Display:ital@0;1&family=Poppins:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           ROOT VARIABLES · LUXURY PALETTE
+           ============================================================ */
+        :root {
+            --gold: #c8a47e;
+            --gold-light: #e4d5c0;
+            --gold-matte: #b8956e;
+            --ivory: #faf6f0;
+            --cream: #f4ede4;
+            --beige: #e8ddd0;
+            --black: #1a1715;
+            --black-soft: #2c2825;
+            --white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.18);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --shadow-lux: 0 30px 60px -20px rgba(0, 0, 0, 0.25);
+            --font-serif: 'Playfair Display', 'Cormorant Garamond', serif;
+            --font-sans: 'Poppins', 'Inter', sans-serif;
+            --transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--ivory);
+            color: var(--black);
+            overflow-x: hidden;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ============================================================
+           LOADER · LUXURY INTRO
+           ============================================================ */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--ivory);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+        }
+        #loader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-logo {
+            width: 80px;
+            height: auto;
+            animation: floatGlow 2.4s infinite alternate ease-in-out;
+            filter: drop-shadow(0 10px 20px rgba(200, 164, 126, 0.2));
+        }
+        .loader-line {
+            margin-top: 32px;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            border-radius: 4px;
+            animation: loaderPulse 1.8s infinite ease-in-out;
+        }
+        @keyframes floatGlow {
+            0% { transform: translateY(0) scale(0.98); opacity: 0.7; }
+            100% { transform: translateY(-8px) scale(1.02); opacity: 1; }
+        }
+        @keyframes loaderPulse {
+            0% { opacity: 0.2; transform: scaleX(0.6); }
+            50% { opacity: 1; transform: scaleX(1); }
+            100% { opacity: 0.2; transform: scaleX(0.6); }
+        }
+
+        /* ============================================================
+           ANNOUNCEMENT BAR
+           ============================================================ */
+        .announcement {
+            background: var(--black);
+            color: var(--gold-light);
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 400;
+            border-bottom: 1px solid rgba(200, 164, 126, 0.15);
+            backdrop-filter: blur(4px);
+            position: relative;
+            z-index: 30;
+            font-family: var(--font-sans);
+        }
+        .announcement span {
+            opacity: 0.9;
+        }
+
+        /* ============================================================
+           NAVBAR · GLASS · STICKY
+           ============================================================ */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: rgba(250, 246, 240, 0.65);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border-bottom: 1px solid rgba(200, 164, 126, 0.12);
+            transition: var(--transition-smooth);
+            padding: 0 2.5rem;
+        }
+        .navbar-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 78px;
+        }
+        .nav-logo {
+            width: 105px;
+            height: auto;
+            transition: var(--transition-smooth);
+        }
+        .nav-logo:hover {
+            transform: scale(1.03);
+            filter: drop-shadow(0 4px 12px rgba(200, 164, 126, 0.25));
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.8rem;
+            list-style: none;
+            font-family: var(--font-sans);
+            font-weight: 400;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .nav-links li a {
+            position: relative;
+            padding: 6px 0;
+            color: var(--black-soft);
+            transition: var(--transition-smooth);
+        }
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .nav-links li a:hover {
+            color: var(--gold-matte);
+        }
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+        }
+        .nav-actions svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--black-soft);
+            stroke-width: 1.2;
+            fill: none;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        .nav-actions svg:hover {
+            stroke: var(--gold);
+            transform: scale(1.05);
+        }
+        .whatsapp-btn {
+            background: var(--black);
+            color: var(--ivory);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border: 1px solid transparent;
+        }
+        .whatsapp-btn:hover {
+            background: transparent;
+            color: var(--black);
+            border-color: var(--black);
+        }
+
+        /* mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 6px;
+        }
+        .menu-toggle span {
+            width: 26px;
+            height: 2px;
+            background: var(--black);
+            transition: var(--transition-smooth);
+            border-radius: 4px;
+        }
+
+        /* ============================================================
+           HERO · CAMPAIGN · MAGAZINE
+           ============================================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--ivory);
+            overflow: hidden;
+            padding: 0 2.5rem;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(200, 164, 126, 0.08) 0%, transparent 70%),
+                radial-gradient(circle at 80% 20%, rgba(200, 164, 126, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+        .hero-grid {
+            position: relative;
+            z-index: 2;
+            max-width: 1440px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 4rem 0;
+        }
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+        .hero-sub {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            letter-spacing: 0.25em;
+            color: var(--gold-matte);
+            text-transform: uppercase;
+            opacity: 0.7;
+            font-weight: 400;
+        }
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(3.2rem, 10vw, 6.4rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--black);
+        }
+        .hero-title em {
+            font-style: italic;
+            color: var(--gold-matte);
+            font-weight: 400;
+        }
+        .hero-desc {
+            font-family: var(--font-sans);
+            font-size: 1.05rem;
+            font-weight: 300;
+            max-width: 400px;
+            color: var(--black-soft);
+            line-height: 1.7;
+            letter-spacing: 0.02em;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+            margin-top: 0.8rem;
+        }
+        .btn-lux {
+            padding: 0.9rem 2.8rem;
+            background: var(--black);
+            color: var(--ivory);
+            border: none;
+            font-family: var(--font-sans);
+            font-weight: 400;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-radius: 60px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.2);
+        }
+        .btn-lux::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+        .btn-lux:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.35);
+            background: var(--gold-matte);
+        }
+        .btn-lux:hover::after {
+            opacity: 1;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--black);
+            border: 1px solid var(--black);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: var(--black);
+            color: var(--ivory);
+            border-color: var(--black);
+        }
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .hero-image img {
+            width: 100%;
+            max-width: 520px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lux);
+            transform: perspective(1200px) rotateY(-3deg) rotateX(2deg);
+            transition: var(--transition-smooth);
+        }
+        .hero-image img:hover {
+            transform: perspective(1200px) rotateY(0) rotateX(0);
+        }
+        .floating-gold {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 164, 126, 0.15), transparent 70%);
+            top: -20px;
+            right: -30px;
+            z-index: -1;
+            filter: blur(30px);
+            animation: floatGold 8s infinite alternate;
+        }
+        @keyframes floatGold {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-30px, 40px) scale(1.3); }
+        }
+
+        /* ============================================================
+           SECTION COMMON · LUXURY SPACING
+           ============================================================ */
+        .section {
+            padding: 6rem 2.5rem;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+        .section-tag {
+            font-family: var(--font-serif);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--gold-matte);
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .section-desc {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            font-size: 1rem;
+            max-width: 500px;
+            color: var(--black-soft);
+            line-height: 1.8;
+        }
+
+        /* ============================================================
+           BRAND STORY · EDITORIAL
+           ============================================================ */
+        .brand-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 6rem 2.5rem;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+        .brand-story img {
+            border-radius: 12px;
+            box-shadow: var(--shadow-lux);
+            transition: var(--transition-smooth);
+            width: 100%;
+        }
+        .brand-story img:hover {
+            transform: scale(1.01);
+        }
+        .brand-story-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+        }
+
+        /* ============================================================
+           FEATURED · CUSTOM CARDS
+           ============================================================ */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        .product-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.06);
+            transition: var(--transition-smooth);
+            position: relative;
+            group: true;
+        }
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px -16px rgba(0, 0, 0, 0.15);
+        }
+        .product-card-image {
+            position: relative;
+            overflow: hidden;
+            height: 320px;
+            background: var(--cream);
+        }
+        .product-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+        .product-card:hover .product-card-image img {
+            transform: scale(1.04);
+        }
+        .product-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--gold);
+            color: var(--white);
+            padding: 0.2rem 1.2rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+        .product-wishlist {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+        }
+        .product-wishlist:hover {
+            background: var(--white);
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        .product-card-body {
+            padding: 1.8rem 1.8rem 2rem;
+        }
+        .product-card-title {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        .product-card-code {
+            font-size: 0.7rem;
+            color: var(--gold-matte);
+            letter-spacing: 0.1em;
+            margin-top: 0.2rem;
+            font-weight: 400;
+        }
+        .product-card-price {
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-top: 0.8rem;
+            color: var(--black);
+        }
+        .product-card-actions {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn-sm {
+            padding: 0.3rem 1.2rem;
+            font-size: 0.7rem;
+            border-radius: 40px;
+            border: 1px solid var(--black);
+            background: transparent;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            font-family: var(--font-sans);
+            letter-spacing: 0.06em;
+        }
+        .btn-sm:hover {
+            background: var(--black);
+            color: var(--ivory);
+        }
+        .btn-sm-gold {
+            border-color: var(--gold);
+            color: var(--gold-matte);
+        }
+        .btn-sm-gold:hover {
+            background: var(--gold);
+            color: var(--white);
+            border-color: var(--gold);
+        }
+
+        /* ============================================================
+           CATEGORIES · LUXURY TILES
+           ============================================================ */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.8rem;
+            margin-top: 2.5rem;
+        }
+        .category-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            background: var(--cream);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        .category-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+        .category-item:hover img {
+            transform: scale(1.06);
+        }
+        .category-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, transparent 60%);
+        }
+        .category-label {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            color: var(--white);
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            z-index: 2;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ============================================================
+           LOOKBOOK · EDITORIAL
+           ============================================================ */
+        .lookbook {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+        .lookbook-item {
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            background: var(--beige);
+            transition: var(--transition-smooth);
+        }
+        .lookbook-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+        .lookbook-item:hover img {
+            transform: scale(1.04);
+        }
+
+        /* ============================================================
+           WHY CHOOSE US · STATS · TESTIMONIALS
+           ============================================================ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--gold-matte);
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.7;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .testimonial-card {
+            background: var(--white);
+            padding: 2.2rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+            font-style: italic;
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--black-soft);
+            border: 1px solid rgba(200, 164, 126, 0.08);
+        }
+        .testimonial-card span {
+            display: block;
+            margin-top: 1rem;
+            font-style: normal;
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--gold-matte);
+        }
+
+        /* ============================================================
+           NEWSLETTER · CONTACT
+           ============================================================ */
+        .newsletter-box {
+            background: var(--black);
+            color: var(--ivory);
+            padding: 4rem 3rem;
+            border-radius: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.2rem;
+            margin: 3rem 0;
+        }
+        .newsletter-box input {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 0.9rem 1.8rem;
+            border-radius: 60px;
+            color: var(--white);
+            width: 100%;
+            max-width: 400px;
+            font-family: var(--font-sans);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+        .newsletter-box input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .newsletter-box input:focus {
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .newsletter-box .btn-lux {
+            background: var(--gold-matte);
+            color: var(--black);
+            border: none;
+        }
+        .newsletter-box .btn-lux:hover {
+            background: var(--gold);
+        }
+
+        /* ============================================================
+           FOOTER · LUXURY
+           ============================================================ */
+        .footer {
+            background: var(--black);
+            color: var(--ivory);
+            padding: 4rem 2.5rem 2rem;
+            margin-top: 2rem;
+        }
+        .footer-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+        .footer-logo {
+            width: 70px;
+            margin-bottom: 1rem;
+            filter: brightness(0.9) saturate(0.6);
+        }
+        .footer p {
+            font-weight: 300;
+            opacity: 0.6;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .footer h4 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: var(--gold-light);
+        }
+        .footer ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .footer ul li a {
+            opacity: 0.5;
+            transition: var(--transition-smooth);
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+        .footer ul li a:hover {
+            opacity: 1;
+            color: var(--gold-light);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.3;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* ============================================================
+           RESPONSIVE · MOBILE FIRST
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .lookbook {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1.2rem;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: rgba(250, 246, 240, 0.95);
+                backdrop-filter: blur(20px);
+                position: absolute;
+                top: 78px;
+                left: 0;
+                width: 100%;
+                padding: 2rem 1.5rem;
+                gap: 1.8rem;
+                border-bottom: 1px solid rgba(200, 164, 126, 0.1);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+                padding: 2rem 0;
+            }
+            .hero-desc {
+                max-width: 100%;
+            }
+            .hero-cta {
+                justify-content: center;
+            }
+            .hero-image img {
+                max-width: 100%;
+            }
+            .brand-story {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 3rem 1.2rem;
+            }
+            .section {
+                padding: 3rem 1.2rem;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .category-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .lookbook {
+                grid-template-columns: 1fr 1fr;
+            }
+            .newsletter-box {
+                padding: 2.5rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.6rem;
+            }
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            .lookbook {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-actions .whatsapp-btn span {
+                display: none;
+            }
+        }
+
+        /* ============================================================
+           UTILITY · REVEAL ANIMATION
+           ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease, transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger>* {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .stagger.visible>*:nth-child(1) {
+            transition-delay: 0.05s;
+        }
+        .stagger.visible>*:nth-child(2) {
+            transition-delay: 0.15s;
+        }
+        .stagger.visible>*:nth-child(3) {
+            transition-delay: 0.25s;
+        }
+        .stagger.visible>*:nth-child(4) {
+            transition-delay: 0.35s;
+        }
+        .stagger.visible>* {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    LOADER
+    ============================================================ -->
+    <div id="loader" role="status" aria-label="Loading">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23c8a47e' stroke-width='1.5'/%3E%3Cpath d='M50 10 A40 40 0 0 1 90 50' fill='none' stroke='%23c8a47e' stroke-width='2'/%3E%3C/svg%3E" alt="TAHERA" class="loader-logo">
+        <div class="loader-line"></div>
+    </div>
+
+    <!-- ============================================================
+    ANNOUNCEMENT BAR
+    ============================================================ -->
+    <div class="announcement" role="banner">
+        <span>✧ complimentary shipping · bespoke service ✧</span>
+    </div>
+
+    <!-- ============================================================
+    NAVBAR · STICKY · GLASS
+    ============================================================ -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-inner">
+            <!-- logo -->
+            <img src="img/logo.png" viewBox='0 0 120 40'%3E%3Ctext x='0' y='30' font-family='Playfair Display, serif' font-size='28' font-weight='600' fill='%231a1715' letter-spacing='6'%3ETAHERA%3C/text%3E%3C/svg%3E" alt="TAHERA" class="nav-logo">
+
+            <!-- desktop links -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#story">Story</a></li>
+                <li><a href="#lookbook">Lookbook</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <!-- actions -->
+            <div class="nav-actions">
+                <svg viewBox="0 0 24 24" aria-label="Search"><circle cx="11" cy="11" r="7"/><line x1="16" y1="16" x2="22" y2="22"/></svg>
+                <svg viewBox="0 0 24 24" aria-label="Wishlist"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                <a href="https://wa.me/923145703357" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="WhatsApp"><span>WhatsApp</span> <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+                <div class="menu-toggle" id="menuToggle" aria-label="Menu" role="button" tabindex="0">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    HERO · CAMPAIGN
+    ============================================================ -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid">
+            <div class="hero-text">
+                <div class="hero-sub">Spring · 2025</div>
+                <h1 class="hero-title">The <em>Art</em> of <br>Elegance</h1>
+                <p class="hero-desc">Where heritage meets modernity — each piece tells a story of refined craftsmanship and timeless luxury.</p>
+                <div class="hero-cta">
+                    <button class="btn-lux">Explore Collection</button>
+                    <button class="btn-lux btn-outline">Lookbook</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="img/first.jpg" alt="TAHERA luxury campaign" loading="lazy">
+                <div class="floating-gold"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    BRAND STORY
+    ============================================================ -->
+    <section class="brand-story reveal" id="story">
+        <img src="img/third.jpg" alt="TAHERA atelier" loading="lazy">
+        <div class="brand-story-content">
+            <div class="section-tag">Heritage</div>
+            <h2 class="section-title">The TAHERA <br>Maison</h2>
+            <p class="section-desc">Founded on the principles of artisanal excellence, TAHERA redefines contemporary luxury. Each garment is a canvas — celebrating the dialogue between tradition and the avant-garde.</p>
+            <button class="btn-lux" style="align-self:flex-start;">Discover</button>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FEATURED COLLECTION · PRODUCTS
+    ============================================================ -->
+    <section class="section reveal" id="collection">
+        <div class="section-tag">Curated</div>
+        <h2 class="section-title">Featured Collection</h2>
+        <div class="product-grid stagger">
+            <!-- card 1 -->
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" alt="Silk Gown" loading="lazy">
+                    <span class="product-badge">New</span>
+                    <button class="product-wishlist" aria-label="Add to wishlist">♡</button>
+                </div>
+                <div class="product-card-body">
+                    <div class="product-card-title">Étoile Silk Gown</div>
+                    <div class="product-card-code">TH-2045 · IVORY</div>
+                    <div class="product-card-price">$1,280</div>
+                    <div class="product-card-actions">
+                        <button class="btn-sm btn-sm-gold">Quick View</button>
+                        <button class="btn-sm">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <!-- card 2 -->
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=600&q=80" alt="Tailored Blazer" loading="lazy">
+                    <span class="product-badge" style="background:var(--black);">Bestseller</span>
+                    <button class="product-wishlist" aria-label="Add to wishlist">♡</button>
+                </div>
+                <div class="product-card-body">
+                    <div class="product-card-title">Cavalier Blazer</div>
+                    <div class="product-card-code">TH-1123 · CHARCOAL</div>
+                    <div class="product-card-price">$1,890</div>
+                    <div class="product-card-actions">
+                        <button class="btn-sm btn-sm-gold">Quick View</button>
+                        <button class="btn-sm">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <!-- card 3 -->
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80" alt="Pleated Dress" loading="lazy">
+                    <button class="product-wishlist" aria-label="Add to wishlist">♡</button>
+                </div>
+                <div class="product-card-body">
+                    <div class="product-card-title">Luna Pleated Dress</div>
+                    <div class="product-card-code">TH-3091 · CHAMPAGNE</div>
+                    <div class="product-card-price">$1,450</div>
+                    <div class="product-card-actions">
+                        <button class="btn-sm btn-sm-gold">Quick View</button>
+                        <button class="btn-sm">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    LUXURY CATEGORIES
+    ============================================================ -->
+    <section class="section reveal">
+        <div class="section-tag">Edit</div>
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="category-grid stagger">
+            <div class="category-item"><img src="img/cate1.jpg" alt="Dresses"><span class="category-label">Dresses</span></div>
+            <div class="category-item"><img src="img/cate2.jpg" alt="Outerwear"><span class="category-label">Outerwear</span></div>
+            <div class="category-item"><img src="img/cate3.jpg" alt="Tailoring"><span class="category-label">Tailoring</span></div>
+            <div class="category-item"><img src="img/cate4.jpg" alt="Accessories"><span class="category-label">Accessories</span></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    LOOKBOOK · EDITORIAL
+    ============================================================ -->
+    <section class="section reveal" id="lookbook">
+        <div class="section-tag">Inspiration</div>
+        <h2 class="section-title">The Lookbook</h2>
+        <div class="lookbook stagger">
+            <div class="lookbook-item"><img src="img/gallery1.jpg" alt="Look 1"></div>
+            <div class="lookbook-item"><img src="img/gallery2.jpg" alt="Look 2"></div>
+            <div class="lookbook-item"><img src="img/gallery3.jpg" alt="Look 3"></div>
+            <div class="lookbook-item"><img src="img/gallery4.jpg" alt="Look 4"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    STATISTICS · WHY CHOOSE US
+    ============================================================ -->
+    <section class="section reveal">
+        <div class="section-tag">Maison</div>
+        <h2 class="section-title">By the Numbers</h2>
+        <div class="stats-grid stagger">
+            <div><div class="stat-number" data-count="12">0</div><div class="stat-label">Years of Excellence</div></div>
+            <div><div class="stat-number" data-count="280">0</div><div class="stat-label">Artisanal Pieces</div></div>
+            <div><div class="stat-number" data-count="4.9">0</div><div class="stat-label">Client Rating</div></div>
+            <div><div class="stat-number" data-count="34">0</div><div class="stat-label">Global Boutiques</div></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    TESTIMONIALS
+    ============================================================ -->
+    <section class="section reveal">
+        <div class="section-tag">Testimonials</div>
+        <h2 class="section-title">What Our Clients Say</h2>
+        <div class="testimonial-grid stagger">
+            <div class="testimonial-card">“TAHERA is not just clothing; it’s an experience. Every stitch whispers luxury.” <span>— A. Khan, Vogue</span></div>
+            <div class="testimonial-card">“The craftsmanship is unparalleled. I feel like royalty in every piece.” <span>— L. Sinclair, Editor</span></div>
+            <div class="testimonial-card">“A modern classic — TAHERA redefines what it means to dress with intention.” <span>— M. Dupont, Stylist</span></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    NEWSLETTER
+    ============================================================ -->
+    <section class="section reveal" id="contact">
+        <div class="newsletter-box">
+            <div class="section-tag" style="color:var(--gold-light);">Newsletter</div>
+            <h2 style="font-family:var(--font-serif);font-size:clamp(1.8rem,4vw,3rem);">Join the Inner Circle</h2>
+            <p style="opacity:0.6;max-width:400px;">Receive exclusive previews, private sale access, and maison stories.</p>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.8rem;width:100%;max-width:500px;">
+                <input type="email" placeholder="Your email address" aria-label="Email address">
+                <button class="btn-lux" style="background:var(--gold-matte);color:var(--black);">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER · LUXURY
+    ============================================================ -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <div>
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40'%3E%3Ctext x='0' y='30' font-family='Playfair Display, serif' font-size='28' font-weight='600' fill='%23faf6f0' letter-spacing='6'%3ETAHERA%3C/text%3E%3C/svg%3E" alt="TAHERA" class="footer-logo">
+                <p>Luxury atelier since 2013. <br>Bespoke elegance for the discerning.</p>
+            </div>
+            <div><h4>Explore</h4><ul><li><a href="#">New Arrivals</a></li><li><a href="#">Bestsellers</a></li><li><a href="#">Lookbook</a></li></ul></div>
+            <div><h4>Service</h4><ul><li><a href="#">Concierge</a></li><li><a href="#">Returns</a></li><li><a href="#">Contact</a></li></ul></div>
+            <div><h4>Connect</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Pinterest</a></li><li><a href="#">WhatsApp</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">© TAHERA · crafted with precision</div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT · LUXURY INTERACTIONS
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            /* ============================================================
+               LOADER
+            ============================================================ */
+            const loader = document.getElementById('loader');
+            window.addEventListener('load', function() {
+                loader.classList.add('hide');
+            });
+
+            /* ============================================================
+               MOBILE MENU TOGGLE
+            ============================================================ */
+            const toggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            toggle.addEventListener('click', function(e) {
+                navLinks.classList.toggle('open');
+                this.classList.toggle('active');
+            });
+
+            /* ============================================================
+               SCROLL REVEAL · INTERSECTION OBSERVER
+            ============================================================ */
+            const reveals = document.querySelectorAll('.reveal, .stagger');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // if stagger, children become visible via css
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+
+            reveals.forEach(el => observer.observe(el));
+
+            /* ============================================================
+               COUNTER ANIMATION (stat numbers)
+            ============================================================ */
+            const counters = document.querySelectorAll('.stat-number');
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.getAttribute('data-count'), 10);
+                        let current = 0;
+                        const increment = target / 60;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                el.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                el.textContent = Math.floor(current);
+                            }
+                        }, 20);
+                        counterObserver.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(c => counterObserver.observe(c));
+
+            /* ============================================================
+               QUICK VIEW / BUY NOW PLACEHOLDER (demo)
+            ============================================================ */
+            document.querySelectorAll('.btn-sm-gold, .btn-sm').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (this.textContent.trim() === 'Quick View') {
+                        alert('✨ TAHERA · Quick View \n(glass morphism popup with slider)');
+                    } else if (this.textContent.trim() === 'Buy Now') {
+                        const productName = this.closest('.product-card-body').querySelector(
+                        '.product-card-title').textContent;
+                        const code = this.closest('.product-card-body').querySelector('.product-card-code')
+                            .textContent;
+                        const price = this.closest('.product-card-body').querySelector('.product-card-price')
+                            .textContent;
+                        const url = window.location.href;
+                        const msg =
+                            `TAHERA · Purchase%0AProduct: ${productName}%0ACode: ${code}%0APrice: ${price}%0AURL: ${url}`;
+                        window.open(`https://wa.me/923145703357?text=${msg}`, '_blank');
+                    }
+                });
+            });
+
+            /* ============================================================
+               WHATSAPP BUTTON (global)
+            ============================================================ */
+            document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    // already link
+                });
+            });
+
+            /* ============================================================
+               SEARCH (demo)
+            ============================================================ */
+            document.querySelector('.nav-actions svg:first-child')?.addEventListener('click', function() {
+                const query = prompt('🔍 Search TAHERA · by title, code, or category');
+                if (query) alert(`Searching for: "${query}" (instant filter demo)`);
+            });
+
+            /* ============================================================
+               WISHLIST (demo)
+            ============================================================ */
+            document.querySelectorAll('.product-wishlist').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.textContent = this.textContent === '♡' ? '♥' : '♡';
+                    this.style.color = this.textContent === '♥' ? '#c8a47e' : '';
+                });
+            });
+
+            /* ============================================================
+               CLOSE MOBILE MENU ON LINK CLICK
+            ============================================================ */
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                });
+            });
+
+        })();
+    </script>
+</body>
+</html>
